@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {UserService} from '../services'; // Adjust the path as necessary
+import {UserService} from '../services';
 
 class UserController {
     async getUser(req: Request, res: Response) {
