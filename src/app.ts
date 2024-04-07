@@ -19,15 +19,19 @@ async function startServer() {
     // databaase configuration
     await Database.initialize();
 
+    // import models
     importModels();
 
+    // sync models
     await Database.sync();
 
+    // configure routes
     configureRoutes();
 
     // middlewares
     app.use(express.json());
 
+    // start server
     app.listen(port, () => {
         console.log(`Server is running on http://localhost:${port}`);
     });
