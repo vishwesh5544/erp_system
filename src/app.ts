@@ -4,10 +4,14 @@ import {Database} from "./database";
 const app = express();
 const port = 3000;
 
-function importModels() {
-    require('./models/Employee');
-    require('./models/Invoice');
-    require('./models/Payment');
+// import models
+// move it to a separate function into models folder and import it here
+async function importModels() {
+    const {Employee, User, Invoice, Payment} = require('./models');
+    await Employee.sync();
+    await User.sync();
+    await Invoice.sync();
+    await Payment.sync();
 }
 
 function configureRoutes() {
@@ -20,7 +24,7 @@ async function startServer() {
     await Database.initialize();
 
     // import models
-    importModels();
+    await importModels();
 
     // sync models
     await Database.sync();
