@@ -1,10 +1,15 @@
 import {Invoice} from '../models';
-import {createInvoice} from "../@types";
+import {CreateInvoice, UpdateInvoice} from "../@types";
+import ServiceResult from "../models/ServiceResult";
 
 export default interface IInvoiceService {
-    createInvoice(createInvoice: createInvoice): Promise<Invoice>;
-    getInvoice(invoiceId: string): Promise<Invoice | null>;
+    getInvoice(invoiceId: number): Promise<ServiceResult<Invoice | Error>>;
+
+    createInvoice(createInvoice: CreateInvoice): Promise<ServiceResult<Invoice>>;
+
+    updateInvoice(invoiceId: number, invoice: UpdateInvoice): Promise<ServiceResult<Invoice | Error>>;
+
+    deleteInvoice(invoiceId: number): Promise<ServiceResult<boolean | Error>>;
+
     getInvoices(): Promise<Invoice[]>;
-    updateInvoice(invoiceId: string, invoice: Invoice): Promise<Invoice | null>;
-    deleteInvoice(invoiceId: string): Promise<boolean>;
 }

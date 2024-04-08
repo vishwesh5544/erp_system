@@ -1,11 +1,13 @@
-export type createInvoice = {
-    userId: string;
+export type CreateInvoice = {
+    // userId: string;
     amount: number;
     status: string;
-    dueDate: string;
+    dueDate: Date;
 }
 
 
-export type updateInvoice = {
-
+export type UpdateInvoice = {
+    amount: number;
+    status: string;
+    dueDate: Date;
 }
